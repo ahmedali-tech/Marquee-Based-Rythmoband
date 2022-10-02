@@ -2,7 +2,7 @@ var raw_lines = [];
 var time = [];
 var dialogue = [];
 var currentTime, dial_number, rythmo_position;
-const loadFile = async (file) => {
+export const loadFile = async (file) => {
   time.length = 0;
   dialogue.length = 0;
   raw_lines.length = 0;
@@ -41,14 +41,14 @@ const loadFile = async (file) => {
   return { time, dialogue };
 };
 
-const makeSubs = () => {
+export const makeSubs = () => {
   for (var i = 0; i < time.length; i++) {
     document.getElementById("output").innerHTML +=
       time[i] + "\n" + dialogue[i] + "\n";
     console.log(time[i] + "\n" + dialogue[i] + "\n");
   }
 };
-const getSub_Seconds = (param) => {
+export const getSub_Seconds = (param) => {
   /*
 		Pass this function the string format of time parameter and it will return you the 
 		time converted to seconds in integer format
@@ -63,7 +63,7 @@ const getSub_Seconds = (param) => {
   return total_seconds;
 };
 
-const getSub_Millis = (param) => {
+export const getSub_Millis = (param) => {
   /*
 		Pass this function the string format of time parameter and it will return you the 
 		time converted to milliseconds in integer format
@@ -79,7 +79,7 @@ const getSub_Millis = (param) => {
   return total_millis;
 };
 
-const loadJson = async (file) => {
+export const loadJson = async (file) => {
   var loaded_Json_data = await file.text();
   var decoded = JSON.parse(loaded_Json_data);
   currentTime = decoded["currentTime"];
@@ -88,12 +88,12 @@ const loadJson = async (file) => {
   return { currentTime, dial_number, rythmo_position };
 };
 
-const PrintJson = () => {
+export const PrintJson = () => {
   document.getElementById("output").innerHTML =
     " " + currentTime + " " + dial_number + " " + rythmo_position;
 };
 
-const MakeJson = (currentTime, dial_number, rythmo_position) => {
+export const MakeJson = (currentTime, dial_number, rythmo_position) => {
   var dict = {
     currentTime: currentTime,
     number: dial_number,
@@ -119,7 +119,7 @@ var hours,
   mills,
   d = 0;
 
-const ToSrtTime = (value) => {
+export const ToSrtTime = (value) => {
   if (Number.isInteger(value)) {
     d = value;
   } else {
@@ -145,15 +145,6 @@ const ToSrtTime = (value) => {
 
   return `${hours}:${mins}:${secs}:${mills}`;
 };
-const getlength = (number) => {
+export const getlength = (number) => {
   return number.toString().length;
 };
-exports.loadFile = loadFile;
-exports.makeSubs = makeSubs;
-exports.getSub_Seconds = getSub_Seconds;
-exports.getSub_Millis = getSub_Millis;
-exports.MakeJson = MakeJson;
-exports.PrintJson = PrintJson;
-exports.loadJson = loadJson;
-exports.ToSrtTime = ToSrtTime;
-exports.getlength = getlength;
