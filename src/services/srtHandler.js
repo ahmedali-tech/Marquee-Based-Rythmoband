@@ -1,4 +1,4 @@
-function NewSRTDownload(dialogues, sub_time) {
+const NewSRTDownload = (dialogues, sub_time) => {
   var srt = "";
   for (var i = 1; i <= sub_time.length; i++) {
     var dial_number = `${i}`;
@@ -34,7 +34,7 @@ function NewSRTDownload(dialogues, sub_time) {
   container.appendChild(a);
   a.click();
   container.removeChild(a);
-}
+};
 
 function setCharAt(str, index, chr) {
   if (index > str.length - 1) return str;

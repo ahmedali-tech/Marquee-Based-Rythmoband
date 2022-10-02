@@ -2,7 +2,7 @@ var raw_lines = [];
 var time = [];
 var dialogue = [];
 var currentTime, dial_number, rythmo_position;
-async function loadFile(file) {
+const loadFile = async (file) => {
   time.length = 0;
   dialogue.length = 0;
   raw_lines.length = 0;
@@ -39,16 +39,16 @@ async function loadFile(file) {
     time[i][1] = time[i][1].replace(",", ":");
   }
   return { time, dialogue };
-}
+};
 
-function makeSubs() {
+const makeSubs = () => {
   for (var i = 0; i < time.length; i++) {
     document.getElementById("output").innerHTML +=
       time[i] + "\n" + dialogue[i] + "\n";
     console.log(time[i] + "\n" + dialogue[i] + "\n");
   }
-}
-function getSub_Seconds(param) {
+};
+const getSub_Seconds = (param) => {
   /*
 		Pass this function the string format of time parameter and it will return you the 
 		time converted to seconds in integer format
@@ -61,9 +61,9 @@ function getSub_Seconds(param) {
 
   var total_seconds = hours * 3600 + minutes * 60 + seconds + millis / 1000;
   return total_seconds;
-}
+};
 
-function getSub_Millis(param) {
+const getSub_Millis = (param) => {
   /*
 		Pass this function the string format of time parameter and it will return you the 
 		time converted to milliseconds in integer format
@@ -77,23 +77,23 @@ function getSub_Millis(param) {
   var total_millis =
     hours * 3600000 + minutes * 60000 + seconds * 1000 + millis;
   return total_millis;
-}
+};
 
-async function loadJson(file) {
+const loadJson = async (file) => {
   var loaded_Json_data = await file.text();
   var decoded = JSON.parse(loaded_Json_data);
   currentTime = decoded["currentTime"];
   dial_number = decoded["number"];
   rythmo_position = decoded["position"];
   return { currentTime, dial_number, rythmo_position };
-}
+};
 
-function PrintJson() {
+const PrintJson = () => {
   document.getElementById("output").innerHTML =
     " " + currentTime + " " + dial_number + " " + rythmo_position;
-}
+};
 
-function MakeJson(currentTime, dial_number, rythmo_position) {
+const MakeJson = (currentTime, dial_number, rythmo_position) => {
   var dict = {
     currentTime: currentTime,
     number: dial_number,
@@ -112,14 +112,14 @@ function MakeJson(currentTime, dial_number, rythmo_position) {
   container.appendChild(a);
   a.click();
   container.removeChild(a);
-}
+};
 var hours,
   mins,
   secs,
   mills,
   d = 0;
 
-function ToSrtTime(value) {
+const ToSrtTime = (value) => {
   if (Number.isInteger(value)) {
     d = value;
   } else {
@@ -144,10 +144,10 @@ function ToSrtTime(value) {
   console.log(mills);
 
   return `${hours}:${mins}:${secs}:${mills}`;
-}
-function getlength(number) {
+};
+const getlength = (number) => {
   return number.toString().length;
-}
+};
 exports.loadFile = loadFile;
 exports.makeSubs = makeSubs;
 exports.getSub_Seconds = getSub_Seconds;

@@ -12,8 +12,8 @@ import { useState, createContext, useContext } from "react";
 import { DialoguesContext } from "../../App";
 
 import { Link } from "react-router-dom";
-import loadFile from "../../services/srtreader";
-import loadJson from "../../services/srtreader";
+import { loadFile } from "../../services/srtreader";
+import { loadJson } from "../../services/srtreader";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {

@@ -3,11 +3,10 @@ import React, { Component, useState, useEffect, useRef } from "react";
 
 import { Player, ControlBar } from "video-react";
 import { Button } from "@mui/material";
-import getSub_Millis from "../../services/srtreader";
-import getSub_Seconds from "../../services/srtreader";
+import { getSub_Millis, getSub_Seconds } from "../../services/srtreader";
 import Smarquee from "smarquee";
 import { TextField } from "@mui/material";
-import NewSRTDownload from "../../services/srtHandler";
+import { NewSRTDownload } from "../../services/srtHandler";
 
 export default function Rythmoband(props) {
   const initialPosition = useRef(
