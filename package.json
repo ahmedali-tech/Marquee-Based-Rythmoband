@@ -26,6 +26,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "build-prod": "node --max_old_space_size=5048 ./node_modules/@react/cli/bin/ng build --prod",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
