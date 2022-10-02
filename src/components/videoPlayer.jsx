@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { PrismCode } from "react-prism";
+
 import { Player, ControlBar } from "video-react";
 import Button from "@mui/material/Button";
 import Prism from "prismjs";

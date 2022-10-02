@@ -1,6 +1,6 @@
 import "../../../node_modules/video-react/dist/video-react.css";
 import React, { Component, useState, useEffect, useRef } from "react";
-import { PrismCode } from "react-prism";
+
 import { Player, ControlBar } from "video-react";
 import { Button } from "@mui/material";
 import { getSub_Millis, getSub_Seconds } from "../../services/srtreader";
