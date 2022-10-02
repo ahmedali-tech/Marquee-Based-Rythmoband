@@ -26,7 +26,6 @@ export default function Rythmoband(props) {
     let x = parseFloat(initialPosition.current);
     let start = getSub_Millis(props.time[number][0]);
     let end = getSub_Millis(props.time[number][1]);
-    console.log(initialPosition.current);
 
     let timeToMove = end - start;
     setMoverNumber((window.innerWidth * 0.25) / timeToMove);
