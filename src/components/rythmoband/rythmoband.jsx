@@ -3,81 +3,19 @@ import React, { Component, useState, useEffect, useRef } from "react";
 
 import { Player, ControlBar } from "video-react";
 import { Button } from "@mui/material";
-
+import getSub_Millis from "../../services/srtreader";
+import getSub_Seconds from "../../services/srtreader";
+import Smarquee from "smarquee";
 import { TextField } from "@mui/material";
+import NewSRTDownload from "../../services/srtHandler";
 
 export default function Rythmoband(props) {
-  function getSub_Millis(param) {
-    /*
-      Pass this function the string format of time parameter and it will return you the 
-      time converted to milliseconds in integer format
-      */
-    param = param.split(":");
-    var hours = parseInt(param[0]);
-    var minutes = parseInt(param[1]);
-    var seconds = parseInt(param[2]);
-    var millis = parseInt(param[3]);
-
-    var total_millis =
-      hours * 3600000 + minutes * 60000 + seconds * 1000 + millis;
-    return total_millis;
-  }
   const initialPosition = useRef(
     props.rythmoPosition === undefined
       ? `${window.innerWidth * 0.3}px`
       : props.rythmoPosition
   );
-  function getSub_Seconds(param) {
-    /*
-      Pass this function the string format of time parameter and it will return you the 
-      time converted to seconds in integer format
-      */
-    param = param.split(":");
-    var hours = parseInt(param[0]);
-    var minutes = parseInt(param[1]);
-    var seconds = parseInt(param[2]);
-    var millis = parseInt(param[3]);
 
-    var total_seconds = hours * 3600 + minutes * 60 + seconds + millis / 1000;
-    return total_seconds;
-  }
-  function NewSRTDownload(dialogues, sub_time) {
-    var srt = "";
-    for (var i = 1; i <= sub_time.length; i++) {
-      var dial_number = `${i}`;
-      var time_s = `${sub_time[i - 1][0]}`;
-      time_s = time_s.trim();
-      time_s = setCharAt(time_s, 8, ",");
-      var time_e = `${sub_time[i - 1][1]}`;
-      time_e = time_e.trim();
-      time_e = setCharAt(time_e, 8, ",");
-      var dialogue = `${dialogues[i - 1]}`;
-      var cluster =
-        dial_number +
-        "\n" +
-        time_s +
-        " --> " +
-        time_e +
-        "\n" +
-        dialogue +
-        "\n" +
-        "" +
-        "\n";
-      srt = srt + cluster;
-    }
-
-    console.log(srt);
-    var data = "text;charset=utf-8,";
-    var a = document.createElement("a");
-    a.href = "data:text/plain," + encodeURI(srt);
-    a.target = "_blank";
-    a.download = "NEW_SRT.srt";
-    a.innerHTML = "";
-    var container = document.getElementById("container");
-    container.appendChild(a);
-    a.click();
-    container.removeChild(a);
-  }
   const [number, setnumber] = useState(
     props.dialogueNumber === undefined ? 0 : props.dialogueNumber
   );
