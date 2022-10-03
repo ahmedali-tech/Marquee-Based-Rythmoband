@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { Player, ControlBar } from "video-react";
 import Button from "@mui/material/Button";
-import Prism from "prismjs";
+
 import Rythmoband from "./rythmoband/rythmoband";
 import { getSub_Seconds, MakeJson, ToSrtTime } from "../services/srtreader";
 
